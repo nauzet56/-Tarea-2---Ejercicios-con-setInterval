@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>¡Atrapa el 7!</h1>
+    <h2 id="display">1</h2>
+    
+    <button onclick="jugar()">jugar / reiniciar</button>
+    <button onclick="parar()">¡para!</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        let numeroActual = 1;
+        let intervalo = null;
+        
+        const display = document.getElementById("display");
+        const resultado = document.getElementById("resultado");
+
+        function jugar() {
+            
+            resultado.innerHTML = "";
+            clearInterval(intervalo);
+
+            intervalo = setInterval(function() {
+                
+                numeroActual = Math.floor(Math.random() * 10) + 1;
+                
+                display.innerHTML = numeroActual;
+            }, 200);
+        }
+
+        function parar() {
+            
+            if (intervalo !== null) {
+                clearInterval(intervalo);
+                intervalo = null; 
+
+                
+                if (numeroActual === 7) {
+                    resultado.innerHTML = "¡Ganaste!";
+                } else {
+                    resultado.innerHTML = "Era el 7, inténtalo de nuevo.";
+                }
+            }
+        }
+    </script>
+    
+</body>
+</html>

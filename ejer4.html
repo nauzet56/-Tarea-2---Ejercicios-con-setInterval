@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="contenedor" style="width: 300px; border: 1px solid black; margin-bottom: 10px;">
+        <div id="barra" style="width: 0%; height: 20px; background: green;"></div>
+    </div>
+
+    <p id="resultado"></p>
+    
+    <button onclick="iniciar()">Iniciar</button>
+
+    <script>
+        let progreso = 0;
+        let intervalo = null;
+        
+        const barra = document.getElementById("barra");
+        const resultado = document.getElementById("resultado");
+
+        function iniciar() {
+            
+            progreso = 0;
+            barra.style.width = "0%";
+            resultado.innerHTML = "";
+            
+            
+            clearInterval(intervalo);
+
+            intervalo = setInterval(function() {
+                progreso = progreso + 1;
+                
+                
+                barra.style.width = progreso + "%";
+
+                if (progreso >= 100) {
+                    clearInterval(intervalo);
+                    resultado.innerHTML = "¡Completado!";
+                }
+            }, 100); 
+        }
+    </script>
+</body>
+</html>
